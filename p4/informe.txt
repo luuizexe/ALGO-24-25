@@ -1,0 +1,190 @@
+	------------------------------------Introducción--------------------------------------
+	
+	En esta práctica vamos a trabajar con montículos mínimos, una estructura de datos de
+	tipo árbol en el que el valor del nodo padre siempre es menor que el de sus hijos.
+	
+	En la primera parte del trabajo vamos a demostrar empíricamente la complejidad de dos
+	operaciones: Insertar un número de nodos en un montículo inicialmente vacío (función
+	insertarMonticulo), que se ejecuta en un tiempo O(n*log(n)); e insertar un vector en
+	un montículo (función crearMonticulo), que se ejecuta en un tiempo O(n).
+	
+	En la segunda parte, vamos a presentar 3 situaciones distintas sobre la ordenación de 
+	un vector por montículos (un vector ascendente, aleatorio y descendente), para 
+	conseguir la complejidad computacional de cada una y compararemos los resultados con 
+	los obtenidos en prácticas anteriores, donde ordenábamos por inserción y quicksort.
+	
+	--------------------------------Detalles del Ordenador--------------------------------
+	
+	Detalles del ordenador utilizado:
+	CPU: Intel® Core™ i5-10300H × 8
+	Memoria RAM: 32,0 GiB
+	Sistema Operativo: Ubuntu 24.04.1 LTS
+	Versión del compilador: 13.2.0
+	
+	----------------------------------------Nota------------------------------------------
+	
+	- Las unidades de los tiempos de ejecución están medidas en microsegundos (μs).
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Insercción del montículo:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n^0.9
+	g(n) Cota ajustada:		n * log(n)
+	h(n) Cota sobreestimada:	n^1.2
+	
+	     n          t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+           500        25.903*       0.096444       0.008336       0.014948
+          1000        57.555*       0.114837       0.008332       0.014457
+          2000       124.696*       0.133330       0.008203       0.013634
+          4000       262.784*       0.150572       0.007921       0.012506
+          8000       567.000        0.174101       0.007886       0.011746
+         16000      1245.000        0.204862       0.008038       0.011226
+         32000      2620.000        0.231029       0.007893       0.010283
+         64000      5618.000        0.265473       0.007932       0.009598
+        128000     12717.000        0.322030       0.008448       0.009457
+        256000     26519.000        0.359866       0.008319       0.008584
+
+	La sucesión de cotas ajustadas tiende a 0.008
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Creación del montículo:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n^0.9
+	g(n) Cota ajustada:		n
+	h(n) Cota sobreestimada:	n^1.1
+	
+	     n          t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+           500        11.088*       0.041285       0.022177       0.011912
+          1000        21.378*       0.042654       0.021378       0.010714
+          2000        41.695*       0.044582       0.020848       0.009749
+          4000        86.789*       0.049729       0.021697       0.009467
+          8000       169.012*       0.051896       0.021127       0.008600
+         16000       350.952*       0.057748       0.021935       0.008331
+         32000       708.000        0.062431       0.022125       0.007841
+         64000      1471.000        0.069511       0.021984       0.007600
+        128000      2837.000        0.071841       0.022164       0.006838
+        256000      5750.000        0.078028       0.022461       0.006466
+      
+	La sucesión de cotas ajustadas tiende a un valor en el intervalo [0.021, 0.022]
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Ordenación Ascendente:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n
+	g(n) Cota ajustada:		(n^0.99) * log(n)
+	h(n) Cota sobreestimada:	n^1.2
+	
+	     n          t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+           500        48.683*       0.097367       0.016672       0.028094
+          1000       110.246*       0.110246       0.017101       0.027693
+          2000       245.289*       0.122644       0.017410       0.026819
+          4000       519.000        0.129750       0.016997       0.024700
+          8000      1094.000        0.136750       0.016647       0.022663
+         16000      2325.000        0.145313       0.016537       0.020964
+         32000      4978.000        0.155562       0.016635       0.019538
+         64000     10601.000        0.165641       0.016719       0.018111
+        128000     22711.000        0.177430       0.016971       0.016888
+        256000     48007.000        0.187527       0.017056       0.015539
+
+	La sucesión de cotas ajustadas tiende a 0.016
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Ordenación Aleatoria:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n
+	g(n) Cota ajustada:		n * log(n)
+	h(n) Cota sobreestimada:	n^1.2
+	
+	     n          t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+           500        62.667*       0.125335       0.020168       0.036164
+          1000       135.937*       0.135937       0.019679       0.034146
+          2000       299.610*       0.149805       0.019709       0.032758
+          4000       666.000        0.166500       0.020075       0.031696
+          8000      1397.000        0.174625       0.020430       0.028939
+         16000      3001.000        0.187562       0.019376       0.027060
+         32000      6648.000        0.207750       0.020027       0.026092
+         64000     14483.000        0.226297       0.020449       0.024742
+        128000     31253.000        0.244164       0.020763       0.023240
+        256000     65824.000        0.257125       0.020648       0.021306
+
+	La sucesión de cotas ajustadas tiende a 0.020
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Ordenación Descendente:	
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n
+	g(n) Cota ajustada:		(n^0.98) * log(n)
+	h(n) Cota sobreestimada:	n^1.2
+	
+	     n          t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+      	   500        53.618*       0.107236       0.019539       0.030942
+      	  1000       119.813*       0.119813       0.019914       0.030096
+      	  2000       256.016*       0.128008       0.019606       0.027992	    
+      	  4000       562.000        0.140500       0.019996       0.026746
+     	  8000      1141.000        0.142625       0.018995       0.023636
+       	 16000      2353.000        0.147063       0.018437       0.021217
+      	 32000      5389.000        0.168406       0.019977       0.021151
+       	 64000     10939.000        0.170922       0.019271       0.018688
+        128000     23784.000        0.185812       0.019990       0.017686
+        256000     48975.000        0.191309       0.019707       0.015852
+
+	La sucesión de cotas ajustadas tiende a 0.019
+	
+	-------------------------------------Conclusión----------------------------------------
+	
+	En primer lugar, vimos que efectivamente las funciones cumplen las complejidades 
+	previamente dichas en la introducción, y llegamos a la conclusión de que es más óptimo
+	insertar todo un vector en lugar de ir insertando cada elemento del mismo, ya que en 
+	insertarMonticulo añadimos los nodos uno a uno y en cada caso hay que reorganizar el 
+	montículo para que siga siendo de mínimos, mientras que en crearMonticulo los nodos 
+	se van colocando en su lugar correspondiente, manteniendo el orden establecido.
+	
+	Por otro lado, en la práctica 2 obtuvimos los siguientes resultados sobre las 
+	complejidades de los algoritmos de ordenación: 
+	
+		-Descendente por inserción  ->	n^2
+		-Ascendente por inserción   ->	n
+		-Aleatorio por inserción    -> 	n^2
+	
+		-Quicksort descendente 	    ->	n^1.08
+		-Quicksort ascendente 	    ->	n^1.09
+		-Quicksort aleatorio 	    ->	n^1.117
+	
+	Comparando los resultados de ambas prácticas, en cuanto al ascendente observamos que 
+	el mejor es el de inserción, ya que solamente compara elementos, y el peor es por 
+	montículos, ya que a pesar de que su complejidad es n * log(n), implica más operaciones 
+	de intercambio que lo hacen más lento frente a quicksort. En el caso del descendente,
+	podemos ver que el mejor es quicksort y el peor el de inserción, ya que requiere 
+	desplazar todos los elementos. En el caso aleatorio, quicksort es la mejor opción 
+	sobre las otras dos, en este caso la peor con diferencia sera inserción.
+	
+	Centrándonos ahora en la ordenación por montículos, comparamos los distintos casos y 
+	llegamos a la conclusión de que ascendente y descendente tienen tiempos similares, 
+	siendo el primero ligeramente más rápido. La diferencia notable se da con el caso
+	aleatorio donde encontramos los peores tiempos.
+	
+	En resumen, el algoritmo de quicksort es una mejor opción para los vectores
+    	descendentes y aleatorios o de grandes tamaños, mientras que el de inserción es
+    	mejor para vectores pequeños o ya ordenados ascendentemente.
+    	
+	---------------------------------------------------------------------------------------

@@ -1,0 +1,177 @@
+	------------------------------------Introducción--------------------------------------
+	
+	En esta práctica evaluaremos los tiempos de ejecución en la ordenación de n elementos 
+	en un array de enteros. Para ello, implementamos dos métodos: uno por inserción, que 
+	compara un elemento con sus posteriores, recorriendo el vector hasta encontrar su 
+	correspondiente sitio, y otro por ordenación rápida (quicksort), que aplica el "divide 
+	y venderás", que divide el problema en subproblemas más pequeños, los resuelve y 
+	combina las soluciones.
+	
+	Con esto, compararemos el comportamiento de ambas implementaciones en 3 escenarios 
+	posibles: un vector descendiente (peor caso), otro ascendiente (mejor caso) y otro 
+	aleatorio, para así conocer cual de los dos algoritmos se aplica mejor a cada caso.
+	
+	--------------------------------Detalles del Ordenador--------------------------------
+	
+	Detalles del ordenador utilizado:
+	CPU: 11th Gen Intel® Core™ i7-1165G7 × 8
+	Memoria RAM: 12,0 GiB
+	Sistema Operativo: Ubuntu 24.04.1 LTS
+	Versión del compilador: 13.2.0
+	
+	----------------------------------------Nota------------------------------------------
+	
+	Las unidades de los tiempos de ejecución están medidas en microsegundos (μs)
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Descendente por inserción:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n^1.8
+	g(n) Cota ajustada:		n^2
+	h(n) Cota sobreestimada:	n^2.2
+	
+	    n            t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+          500         233.088*       0.003231       0.000932       0.000269
+         1000         943.000        0.003754       0.000943       0.000237
+         2000        3787.000        0.004330       0.000947       0.000207
+         4000       15053.000        0.004942       0.000941       0.000179
+         8000       59936.000        0.005651       0.000937       0.000155
+        16000      244108.000        0.006609       0.000954       0.000138
+        32000      955091.000        0.007426       0.000933       0.000117
+	
+	La cota ajustada tiende a 0.0009
+	
+	---------------------------------------Tabla------------------------------------------
+
+	Ascendente por inserción:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n^0.8
+	g(n) Cota ajustada:		n
+	h(n) Cota sobreestimada:	n^1.2
+	
+	    n            t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+          500           1.176*       0.008152       0.002352       0.000679
+         1000           2.275*       0.009055       0.002275       0.000571
+         2000           4.678*       0.010696       0.002339       0.000511
+         4000           9.233*       0.012126       0.002308       0.000439
+         8000          18.250*       0.013765       0.002281       0.000378
+        16000          36.142*       0.015657       0.002259       0.000326
+        32000          72.093*       0.017938       0.002253       0.000283
+	
+	La cota ajustada tiende a 0.0022
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Aleatorio por inserción:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n^1.9
+	g(n) Cota ajustada:		n^2
+	h(n) Cota sobreestimada:	n^2.1
+
+	    n            t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+          500         125.161*       0.000932       0.000501       0.000269
+         1000         490.536*       0.000979       0.000491       0.000246
+         2000        1875.000        0.001002       0.000469       0.000219
+         4000        8399.000        0.001203       0.000525       0.000229
+         8000       30764.000        0.001181       0.000481       0.000196
+        16000      122855.000        0.001263       0.000480       0.000182
+        32000      486494.000        0.001341       0.000475       0.000168
+       
+	La cota ajustada tiende a un valor entre 0.00048 y 0.0005
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Descendente por ordenación rápida:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n^1.04
+	g(n) Cota ajustada:		n^1.08
+	h(n) Cota sobreestimada:	n^1.12
+	
+	    n            t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+          500          17.936*       0.027977       0.021820       0.017017
+         1000          37.788*       0.028665       0.021745       0.016495
+         2000          78.916*       0.029114       0.021481       0.015849
+         4000         167.660*       0.030081       0.021588       0.015493
+         8000         354.606*       0.030941       0.021598       0.015076
+        16000         759.000        0.032207       0.021867       0.014847
+        32000        1555.000        0.032390       0.021192       0.013995
+	
+	La cota ajustada tiende a 0.021
+	
+	---------------------------------------Tabla------------------------------------------
+	
+	Ascendente por ordenación rápida:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n^1.05
+	g(n) Cota ajustada:		n^1.09
+	h(n) Cota sobreestimada:	n^1.13
+
+	    n            t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+          500          18.003*       0.026389       0.020581       0.016051
+         1000          38.205*       0.027047       0.020517       0.015564
+         2000          81.802*       0.027969       0.020637       0.015226
+         4000         172.497*       0.028485       0.020443       0.014671
+         8000         359.838*       0.028699       0.020033       0.013983
+        16000         774.000        0.029814       0.020242       0.013743
+        32000        1709.000        0.031793       0.020996       0.013865
+
+	La cota ajustada tiende a 0.020
+	
+	---------------------------------------Tabla------------------------------------------
+
+	Aleatorio por ordenación rápida:
+	
+	(*): para tiempos menores a 500 μs, se muestra el tiempo promedio de 10.000 
+	ejecuciones del algoritmo, para obtener mejores resultados.
+	
+	f(n) Cota subestimada:		n
+	g(n) Cota ajustada:		n^1.117
+	h(n) Cota sobreestimada:	n^1.2
+
+	    n            t(n)       t(n)/f(n)      t(n)/g(n)      t(n)/h(n)
+          500          28.502*       0.057004       0.027550       0.016448
+         1000          62.233*       0.062233       0.027735       0.015632
+         2000         133.144*       0.066572       0.027357       0.014557
+         4000         289.825*       0.072456       0.027456       0.013793
+         8000         631.000        0.078875       0.027560       0.013071
+        16000        1354.000        0.084625       0.027266       0.012209
+        32000        2957.000        0.092406       0.027454       0.011606
+
+	La cota ajustada tiende a 0.027
+	
+	-------------------------------------Conclusión----------------------------------------
+	
+	Con los datos obtenidos se puede llegar a las siguientes conclusiones:
+	
+	-En el caso de los vectores descendentes se puede observar que los tiempos son mejores 
+	para el algoritmo de ordenación rápida, con complejidad O(n^1.08), frente al de 
+	inserción, con complejidad O(n^2).
+	
+	-En el caso de los vectores ascendentes, se deduce que por inserción, con complejidad 
+	O(n), es más eficaz, ya que simplemente recorre el vector verificando que todos los 
+	elementos están en su sitio, frente al de ordenación rápida, con complejidad O(n^1.09).
+	
+	-Por último, en los aleatorios vemos mejores tiempos en el de ordenación rápida, con
+	complejidad O(n^1.117), con respecto al de inserción con complejidad O(n^2).
+	
+	En resumen, el algoritmo de ordenación rápida es una mejor elección para los vectores
+	descendientes y aleatorios o de grandes tamaños, mientras que el de inserción funciona
+	mejor con vectores pequeños o ya ordenados ascendentemente.
+	
+	---------------------------------------------------------------------------------------
